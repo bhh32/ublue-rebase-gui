@@ -76,7 +76,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def run_command(self, button):
         self.status_label.set_text("Rebasing... Please Wait...")
-        running_cmd = subprocess.Popen(["rpm-ostree", "rebase", "--experimental", "ostree-unverified-registry:ghcr.io/ublue-os/" + self.get_env() + ":latest"], stdin=subprocess.PIPE, stdout=subprocess.DEVNULL)
+        vers = self.get_vers()
+        running_cmd = subprocess.Popen(["rpm-ostree", "rebase", "--experimental", "ostree-unverified-registry:ghcr.io/ublue-os/" + self.get_env() + ":" + vers], stdin=subprocess.PIPE, stdout=subprocess.DEVNULL)
         running_ret_code = running_cmd.returncode
 
         if running_ret_code == 0:

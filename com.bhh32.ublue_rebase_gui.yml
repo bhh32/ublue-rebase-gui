@@ -1,0 +1,20 @@
+app-id: com.bhh32.ublue_rebase_gui
+runtime: org.gnome.Platform
+runtime-version: '43'
+sdk: org.gnome.Sdk
+command: ublue-rebase-gui.py
+modules:
+  - name: ublue-rebase-gui
+    buildsystem: simple
+    build-commands:
+      - install -D ublue-rebase-gui.py /app/bin/ublue-rebase-gui.py
+    sources:
+      - type: file
+        path: ublue-rebase-gui.py
+finish-args:
+  - --nosocket=fallback-x11
+  - --socket=x11
+  - --socket=wayland
+  - --socket=session-bus
+  - --filesystem=host
+  - --env=DISPLAY=":0"
